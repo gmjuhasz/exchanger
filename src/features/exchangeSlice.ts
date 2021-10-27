@@ -5,6 +5,7 @@ interface ExchangeType {
   fromCurrency: string;
   toCurrency: string;
   rate: number;
+  currencies: string[];
 }
 
 interface ExchangeState {
@@ -17,6 +18,7 @@ const initialState: ExchangeState = {
     fromCurrency: "NaN",
     toCurrency: "NaN",
     rate: 0,
+    currencies: [],
   },
 };
 
@@ -30,8 +32,23 @@ const exchangeSlice = createSlice({
     changeAction: (state) => {
       state.value.isBuy = !state.value.isBuy;
     },
+    changeFromCurrency: (state, action: PayloadAction<string>) => {
+      state.value.fromCurrency = action.payload;
+    },
+    changeToCurrency: (state, action: PayloadAction<string>) => {
+      state.value.toCurrency = action.payload;
+    },
+    updateRate: (state, action: PayloadAction<number>) => {
+      state.value.rate = action.payload;
+    },
   },
 });
 
-export const { initExchange, changeAction } = exchangeSlice.actions;
+export const {
+  initExchange,
+  changeAction,
+  changeFromCurrency,
+  changeToCurrency,
+  updateRate,
+} = exchangeSlice.actions;
 export default exchangeSlice.reducer;

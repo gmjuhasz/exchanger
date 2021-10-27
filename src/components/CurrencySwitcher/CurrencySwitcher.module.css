@@ -1,0 +1,36 @@
+.CurrencySwitcher {
+}
+
+.ItemSymbol {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.ItemSymbolText {
+  font-size: xx-large;
+  position: absolute;
+  top: 13px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.CurrencyAndBalance {
+  font-weight: bold;
+}
+
+.FullCurrencyName {
+  color: grey;
+}
+
+.DropDownMenu {
+  border: none !important;
+  border-radius: 0;
+  width: 100%;
+}
+
+.DropDownItem {
+  /* border-bottom: 1 px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25 rem; */
+}

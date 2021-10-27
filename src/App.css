@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  position: relative;
+  height: 100%;
 }
 
 .AlignLeft {
@@ -12,6 +14,13 @@
 }
 
 .ActionButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   margin-top: 100px;
   width: 100%;
+}
+
+.Title {
+  padding-top: 10px;
 }

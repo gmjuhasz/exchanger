@@ -7,12 +7,15 @@ import { Provider } from "react-redux";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Card className="AppContainer">
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Card>
     </Provider>
   </React.StrictMode>,

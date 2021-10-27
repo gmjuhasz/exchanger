@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Switch } from "react-router";
+import { Route } from "react-router-dom";
 import "./App.css";
 import { RootState } from "./app/store";
 import CurrencyCardContainer from "./components/CurrencyCardContainer/CurrencyCardContainer";
+import CurrencySwitcher from "./components/CurrencySwitcher/CurrencySwitcher";
 import CurrentRate from "./components/CurrentRate/CurrentRate";
 import { initAccounts } from "./features/accountsSlice";
 import { initExchange } from "./features/exchangeSlice";
@@ -44,35 +47,18 @@ function App() {
       dispatch(
         initExchange({
           isBuy: false,
-          fromCurrency: currencies[0],
-          toCurrency: currencies[1],
-          rate: eurRates[currencies[1]],
+          fromCurrency: "EUR",
+          toCurrency: currencies[0],
+          rate: eurRates["USD"],
+          currencies,
         })
       );
 
-      console.log(currencyResult);
-      console.log(eurRates);
       setIsLoading(false);
     };
 
     fetchData();
   }, [dispatch]);
-
-  const getActionText = () => {
-    if (exchangeStore.isBuy) {
-      return (
-        <span>
-          Buy {exchangeStore.fromCurrency} with {exchangeStore.toCurrency}
-        </span>
-      );
-    } else {
-      return (
-        <span>
-          Sell {exchangeStore.fromCurrency} to {exchangeStore.toCurrency}
-        </span>
-      );
-    }
-  };
 
   return isLoading ? (
     <div className="App">
@@ -80,21 +66,36 @@ function App() {
     </div>
   ) : (
     <div className="App">
-      <h2 className="AlignLeft">
-        {exchangeStore.isBuy ? <span>Buy</span> : <span>Sell</span>}{" "}
-        {exchangeStore.fromCurrency}
-      </h2>
-      <div className="AlignLeft">
-        <CurrentRate
-          fromCurrency={exchangeStore.fromCurrency}
-          toCurrency={exchangeStore.toCurrency}
-          rate={exchangeStore.rate}
-        ></CurrentRate>
-      </div>
-      <CurrencyCardContainer accounts={accountsStore}></CurrencyCardContainer>
-      <Button disabled={true} className="ActionButton">
-        {getActionText()}
-      </Button>
+      <Switch>
+        <Route path="/currency-switcher/from">
+          <CurrencySwitcher
+            accounts={accountsStore}
+            isFromSwitcher={true}
+          ></CurrencySwitcher>
+        </Route>
+        <Route path="/currency-switcher/to">
+          <CurrencySwitcher
+            accounts={accountsStore}
+            isFromSwitcher={false}
+          ></CurrencySwitcher>
+        </Route>
+        <Route path="/">
+          <h2 className="AlignLeft Title">
+            {exchangeStore.isBuy ? <span>Buy</span> : <span>Sell</span>}{" "}
+            {exchangeStore.fromCurrency}
+          </h2>
+          <div className="AlignLeft">
+            <CurrentRate
+              fromCurrency={exchangeStore.fromCurrency}
+              toCurrency={exchangeStore.toCurrency}
+              rate={exchangeStore.rate}
+            ></CurrentRate>
+          </div>
+          <CurrencyCardContainer
+            accounts={accountsStore}
+          ></CurrencyCardContainer>
+        </Route>
+      </Switch>
     </div>
   );
 }

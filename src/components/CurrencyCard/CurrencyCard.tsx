@@ -1,11 +1,16 @@
 import React from "react";
-import { Card, Col, Container, Row, Form } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import styles from "./CurrencyCard.module.css";
+import { BsChevronDown } from "react-icons/bs";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
 interface CurrenyCardProp {
   currency: string;
   inputValue: string;
   balance: number;
+  routerLocation: string;
   onValueChange: (e: string) => void;
 }
 
@@ -13,8 +18,12 @@ const CurrencyCard = ({
   currency,
   inputValue,
   balance,
+  routerLocation,
   onValueChange,
 }: CurrenyCardProp) => {
+  const history = useHistory();
+  const exchangeStore = useSelector((state: RootState) => state.exchange.value);
+
   const formatStringValue = (value: string) => {
     if (value === "") {
       return "0";
@@ -27,9 +36,24 @@ const CurrencyCard = ({
   };
 
   const renderExceedesText = () => {
-    if (parseFloat(inputValue) > balance) {
-      return <span>Exceeds balance</span>;
+    const buyerCard = exchangeStore.fromCurrency === currency;
+    const exceedTest = (
+      <span className={styles.ExceedBalanceText}>Exceeds balance</span>
+    );
+
+    if (buyerCard) {
+      if (parseFloat(inputValue) > balance && !exchangeStore.isBuy) {
+        return exceedTest;
+      }
+    } else {
+      if (parseFloat(inputValue) > balance && exchangeStore.isBuy) {
+        return exceedTest;
+      }
     }
+  };
+
+  const handleCurrencyChange = () => {
+    history.push("/currency-switcher/" + routerLocation);
   };
 
   return (
@@ -37,7 +61,14 @@ const CurrencyCard = ({
       <Container>
         <Row>
           <Col className={styles.Currency}>
-            <h5 data-testid="CurrencyCell">{currency}</h5>
+            <div
+              className={styles.CurrencyCellDiv}
+              onClick={handleCurrencyChange}
+            >
+              <h5 data-testid="CurrencyCell">
+                {currency} <BsChevronDown className={styles.Icon} />
+              </h5>
+            </div>
           </Col>
           <Col className={styles.InputValue}>
             <h5>
@@ -55,7 +86,7 @@ const CurrencyCard = ({
         </Row>
         <Row>
           <Col data-testid="BalanceCell" className={styles.Balance}>
-            Balance: {balance}
+            Balance: {balance.toFixed(2)}
           </Col>
           <Col data-testid="ExceedBalanceCell" className={styles.ExceedBalance}>
             {renderExceedesText()}

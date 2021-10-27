@@ -13,7 +13,7 @@ class Rest {
       );
       if (response.status === 200) {
         const data = response.data;
-        return [DEFAULT_CURRENCY, ...Object.keys(data.data)];
+        return Object.keys(data.data);
       } else {
         return response;
       }

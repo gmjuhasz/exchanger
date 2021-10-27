@@ -15,5 +15,7 @@ code {
 .AppContainer {
   width: 50%;
   margin: 10px auto 10px auto;
-  padding: 15px;
+  padding: 5px 15px 15px 15px;
+  height: 600px;
+  overflow: auto;
 }

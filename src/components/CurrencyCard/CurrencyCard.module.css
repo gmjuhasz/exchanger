@@ -31,3 +31,16 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.Icon {
+  vertical-align: bottom;
+}
+
+.CurrencyCellDiv {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.ExceedBalanceText {
+  color: #c20202ad;
+}

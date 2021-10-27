@@ -4,6 +4,13 @@ export interface Accounts {
   [currency: string]: number;
 }
 
+interface TransactionInterface {
+  fromCurrency: string;
+  fromAmount: number;
+  toCurrency: string;
+  toAmount: number;
+}
+
 interface AccountsState {
   value: Accounts;
 }
@@ -19,8 +26,16 @@ export const accountSlice = createSlice({
     initAccounts: (state, action: PayloadAction<Accounts>) => {
       state.value = action.payload;
     },
+    makeTransaction: (state, action: PayloadAction<TransactionInterface>) => {
+      const { fromCurrency, fromAmount, toCurrency, toAmount } = action.payload;
+      state.value[fromCurrency] -= fromAmount;
+      if (!state.value[toCurrency]) {
+        state.value[toCurrency] = 0;
+      }
+      state.value[toCurrency] += toAmount;
+    },
   },
 });
 
-export const { initAccounts } = accountSlice.actions;
+export const { initAccounts, makeTransaction } = accountSlice.actions;
 export default accountSlice.reducer;
