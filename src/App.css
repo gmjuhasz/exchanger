@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.AlignLeft {
+  text-align: left;
+}
+
+.Spinner {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.ActionButton {
+  margin-top: 100px;
+  width: 100%;
+}

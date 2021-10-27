@@ -1,0 +1,33 @@
+.CurrencyCard {
+  padding: 6px;
+}
+
+.Currency {
+  text-align: left;
+}
+.Balance {
+  text-align: left;
+}
+.ExceedBalance {
+  text-align: right;
+}
+.InputValue {
+  text-align: right;
+}
+.InputElement {
+  border: none;
+  border-width: 0;
+  box-shadow: none;
+  direction: ltr;
+  text-align: right;
+}
+.InputElement:focus {
+  outline-width: 0;
+}
+
+/* Hide HTML arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
