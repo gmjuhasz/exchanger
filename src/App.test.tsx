@@ -1,15 +1,18 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import React, { useEffect } from "react";
+import { act, render } from "@testing-library/react";
+import { Provider } from "react-redux";
+import "@testing-library/jest-dom/extend-expect";
+import { store } from "./app/store";
+import App from "./App";
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+describe("On mount test", () => {
+  it("fetches data and loads", async () => {
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+    expect(getByTestId("LoadingDiv")).toBeInTheDocument();
+  });
 });

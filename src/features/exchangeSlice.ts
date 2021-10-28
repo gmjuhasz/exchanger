@@ -15,9 +15,9 @@ interface ExchangeState {
 const initialState: ExchangeState = {
   value: {
     isBuy: false,
-    fromCurrency: "NaN",
-    toCurrency: "NaN",
-    rate: 0,
+    fromCurrency: "EUR",
+    toCurrency: "USD",
+    rate: 1.2,
     currencies: [],
   },
 };

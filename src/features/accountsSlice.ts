@@ -16,7 +16,7 @@ interface AccountsState {
 }
 
 const initialState: AccountsState = {
-  value: {},
+  value: { USD: 3000, EUR: 4000 },
 };
 
 export const accountSlice = createSlice({

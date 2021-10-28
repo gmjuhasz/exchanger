@@ -89,6 +89,9 @@ const CurrencyCardContainer = ({ accounts }: CurrencyCardContainerProps) => {
           : parseFloat(fromCurrencyInput),
       })
     );
+
+    setFromCurrencyInput("0");
+    setToCurrencyInput("0");
   };
 
   return (
@@ -106,11 +109,13 @@ const CurrencyCardContainer = ({ accounts }: CurrencyCardContainerProps) => {
       <h3>
         {exchangeStore.isBuy ? (
           <BsArrowUpCircleFill
+            data-testid="ChangeDirectionButton"
             className={styles.IconButton}
             onClick={handleActionChange}
           />
         ) : (
           <BsArrowDownCircleFill
+            data-testid="ChangeDirectionButton"
             className={styles.IconButton}
             onClick={handleActionChange}
           />
@@ -125,6 +130,7 @@ const CurrencyCardContainer = ({ accounts }: CurrencyCardContainerProps) => {
       ></CurrencyCard>
 
       <Button
+        data-testid="ActionButton"
         disabled={!isTransactionPossible()}
         className="ActionButton"
         onClick={handleTransaction}

@@ -61,11 +61,11 @@ function App() {
   }, [dispatch]);
 
   return isLoading ? (
-    <div className="App">
+    <div className="App" data-testid="LoadingDiv">
       <Spinner className="Spinner" animation="border" role="status"></Spinner>
     </div>
   ) : (
-    <div className="App">
+    <div className="App" data-testid="LoadedDiv">
       <Switch>
         <Route path="/currency-switcher/from">
           <CurrencySwitcher

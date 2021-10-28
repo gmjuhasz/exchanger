@@ -39,3 +39,4 @@ class Rest {
 }
 
 export const { fetchCurrencies, fetchRatesFor } = new Rest();
+export default new Rest();
