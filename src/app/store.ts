@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import accountsReducer from "../features/accountsSlice";
-import exchangeReducer from "../features/exchangeSlice";
+import accountsReducer from "../features/accounts/accountsSlice";
+import exchangeReducer from "../features/exchange/exchangeSlice";
 
 export const store = configureStore({
   reducer: {

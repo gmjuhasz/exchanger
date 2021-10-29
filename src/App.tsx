@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch } from "react-router";
 import { Route } from "react-router-dom";
@@ -8,8 +8,8 @@ import { RootState } from "./app/store";
 import CurrencyCardContainer from "./components/CurrencyCardContainer/CurrencyCardContainer";
 import CurrencySwitcher from "./components/CurrencySwitcher/CurrencySwitcher";
 import CurrentRate from "./components/CurrentRate/CurrentRate";
-import { initAccounts } from "./features/accountsSlice";
-import { initExchange } from "./features/exchangeSlice";
+import { initAccounts } from "./features/accounts/accountsSlice";
+import { initExchange } from "./features/exchange/exchangeSlice";
 import { fetchCurrencies, fetchRatesFor } from "./utils/rest";
 
 const initialAccountBalance = {

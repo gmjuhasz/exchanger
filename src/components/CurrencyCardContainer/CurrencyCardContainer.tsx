@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Accounts, makeTransaction } from "../../features/accountsSlice";
+import {
+  Accounts,
+  makeTransaction,
+} from "../../features/accounts/accountsSlice";
 import CurrencyCard from "../CurrencyCard/CurrencyCard";
 import styles from "./CurrencyCardContainer.module.css";
 import { BsArrowUpCircleFill, BsArrowDownCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { changeAction } from "../../features/exchangeSlice";
+import { changeAction } from "../../features/exchange/exchangeSlice";
 import { Button } from "react-bootstrap";
 
 interface CurrencyCardContainerProps {
@@ -36,7 +39,7 @@ const CurrencyCardContainer = ({ accounts }: CurrencyCardContainerProps) => {
   };
 
   const isTransactionPossible = () => {
-    if (fromCurrencyInput === "0") {
+    if (parseFloat(fromCurrencyInput) === 0) {
       return false;
     }
     if (exchangeStore.isBuy) {

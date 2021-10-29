@@ -4,7 +4,6 @@ import "@testing-library/jest-dom/extend-expect";
 import CurrentRate from "./CurrentRate";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
-import rest from "../../utils/rest";
 
 const DEFAULT_TEXT = " $1 = €1.0000";
 

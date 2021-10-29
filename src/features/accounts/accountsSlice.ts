@@ -4,7 +4,7 @@ export interface Accounts {
   [currency: string]: number;
 }
 
-interface TransactionInterface {
+export interface TransactionInterface {
   fromCurrency: string;
   fromAmount: number;
   toCurrency: string;

@@ -6,7 +6,7 @@ import symbols from "../../static/currency-symbols.json";
 import { AiOutlineStock } from "react-icons/ai";
 import { fetchRatesFor } from "../../utils/rest";
 import { useDispatch } from "react-redux";
-import { updateRate } from "../../features/exchangeSlice";
+import { updateRate } from "../../features/exchange/exchangeSlice";
 
 interface CurrentRateProps {
   fromCurrency: string;

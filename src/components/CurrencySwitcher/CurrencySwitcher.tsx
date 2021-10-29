@@ -1,13 +1,13 @@
 import React from "react";
 import { Row, Col, Dropdown } from "react-bootstrap";
-import { Accounts } from "../../features/accountsSlice";
+import { Accounts } from "../../features/accounts/accountsSlice";
 import styles from "./CurrencySwitcher.module.css";
 import symbols from "../../static/currency-symbols.json";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeFromCurrency,
   changeToCurrency,
-} from "../../features/exchangeSlice";
+} from "../../features/exchange/exchangeSlice";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../app/store";
 type SymbolKey = keyof typeof symbols;
@@ -51,7 +51,11 @@ const CurrencySwitcher = ({
           const fullName = symbols[currency as SymbolKey]?.name;
 
           return (
-            <div key={currency} onClick={() => handleCurrencyChange(currency)}>
+            <div
+              key={currency}
+              onClick={() => handleCurrencyChange(currency)}
+              data-testid="ListItem"
+            >
               <Dropdown.Item className={styles.DropDownItem}>
                 <Row>
                   <Col xs={2} className={styles.ItemSymbol}>
