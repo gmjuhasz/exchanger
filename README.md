@@ -14,4 +14,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - Run tests
 
-  > `npm test`
+  > `npm test a`
